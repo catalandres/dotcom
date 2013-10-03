@@ -159,19 +159,20 @@ if ($hmnum == 13 && $hd >= 1) {
 $xtra_head = <<<EOD
 <meta name="keywords" content="hebcal,Jewish calendar,Hebrew calendar,candle lighting,Shabbat,Havdalah,sedrot,Sadinoff,Yahrzeit,calender">
 <meta name="author" content="Michael J. Radwin">
+<link rel="stylesheet" href="/i/glyphicons_pro_1.8/glyphicons/web/html_css/css/glyphicons.hebcal.css">
 <style type="text/css">
-ul.inline li:after{content:"\\00a0\\00b7"}
-ul.inline li:last-child:after{content:""}
+ul.list-inline li:after{content:"\\00a0\\00b7"}
+ul.list-inline li:last-child:after{content:""}
 </style>
 EOD;
 echo html_header_bootstrap("Jewish Calendar, Hebrew Date Converter, Holidays - hebcal.com",
 		     $xtra_head,
 		     false);
 ?>
-<div class="span12">
+<div class="col-md-12">
 <div class="clearfix">
 <h1 class="hidden-phone">Hebcal Jewish Calendar</h1>
-<ul class="inline">
+<ul class="list-inline">
 <?php
 echo "<li><time datetime=\"", date("Y-m-d"), "\">", date("D, j F Y"), "</time>\n";
 $hm = $hnum_to_str[$hmnum];
@@ -205,14 +206,14 @@ if (isset($sedra) && isset($sedra[$saturday_iso])) {
 }
 
 function holiday_greeting($blurb, $long_text) { ?>
-<div class="row-fluid">
-<div class="span8">
+<div class="row">
+<div class="col-md-8">
 <div class="alert alert-success">
  <strong><?php echo $blurb ?>!</strong>
  <?php echo $long_text ?>.
 </div><!-- .alert -->
-</div><!-- .span8 -->
-</div><!-- .row-fluid -->
+</div><!-- .col-md-8 -->
+</div><!-- .row -->
 <?php
 }
 
@@ -256,10 +257,9 @@ if (isset($rosh_chodesh)) {
 ?>
 </div><!-- .clearfix -->
 
-<div class="row-fluid">
-<div class="span6">
-<h2><img style="vertical-align:middle" src="/i/glyphicons_pro_1.7/glyphicons/png/glyphicons_045_calendar.png" width="23" height="24" alt="">
-Holiday Calendar</h2>
+<div class="row">
+<div class="col-md-6">
+<h2><span class="glyphicons calendar"></span> Holiday Calendar</h2>
 <p>Holidays, candle lighting times, and Torah readings for any year 0001-9999.
 Download to Outlook, iPhone, Google Calendar, and more.</p>
 <?php
@@ -273,25 +273,23 @@ Download to Outlook, iPhone, Google Calendar, and more.</p>
   $greg_yr2 = $greg_yr1 + 1;
   $greg_range = $greg_yr1 . "-" . $greg_yr2;
 ?>
-<p><a class="btn" href="/holidays/<?php echo $greg_range ?>"><i class="icon-calendar"></i> <?php echo $greg_range ?> Holidays &raquo;</a></p>
-<p><a class="btn" title="Hebcal Custom Calendar" href="/hebcal/"><i class="icon-pencil"></i> Customize your calendar &raquo;</a></p>
-</div><!-- .span6 -->
+<p><a class="btn btn-default" href="/holidays/<?php echo $greg_range ?>"><span class="glyphicons calendar"></span> <?php echo $greg_range ?> Holidays &raquo;</a></p>
+<p><a class="btn btn-default" title="Hebcal Custom Calendar" href="/hebcal/"><span class="glyphicon glyphicon-pencil"></span> Customize your calendar &raquo;</a></p>
+</div><!-- .col-md-6 -->
 
-<div class="span6">
-<h2><img style="vertical-align:middle" src="/i/glyphicons_pro_1.7/glyphicons/png/glyphicons_081_refresh.png" width="25" height="26" alt="">
-Convert Dates</h2>
+<div class="col-md-6">
+<h2><span class="glyphicons refresh"></span> Convert Dates</h2>
 <p>Convert between Hebrew and Gregorian dates and see today&apos;s date in a Hebrew font.</p>
-<p><a class="btn" href="/converter/"><i class="icon-refresh"></i> Date Converter &raquo;</a></p>
+<p><a class="btn btn-default" href="/converter/"><span class="glyphicon glyphicon-refresh"></span> Date Converter &raquo;</a></p>
 <p>Generate a list of Yahrzeit (memorial) and Yizkor dates, or
 Hebrew Birthdays and Anniversaries.</p>
-<p><a class="btn" href="/yahrzeit/"><i class="icon-user"></i> Yahrzeit + Anniversary Calendar &raquo;</a></p>
-</div><!-- .span6 -->
-</div><!-- .row-fluid -->
+<p><a class="btn btn-default" href="/yahrzeit/"><span class="glyphicons parents"></span> Yahrzeit + Anniversary Calendar &raquo;</a></p>
+</div><!-- .col-md-6 -->
+</div><!-- .row -->
 
-<div class="row-fluid">
-<div class="span6">
-<h2><img style="vertical-align:middle" src="/i/glyphicons_pro_1.7/glyphicons/png/glyphicons_334_candle.png" width="20" height="25" alt="">
-Shabbat Times</h2>
+<div class="row">
+<div class="col-md-6">
+<h2><span class="glyphicons candle"></span> Shabbat Times</h2>
 <p>Candle-lighting and Havdalah times. Weekly Torah portion.</p>
 <form action="/shabbat/" method="get" class="form form-inline">
 <input type="hidden" name="geo" value="zip">
@@ -301,26 +299,25 @@ Shabbat Times</h2>
 pattern="\d*" id="zip"></label>
 <input type="hidden" name="m" value="<?php
   if (isset($param["m"])) { echo $param["m"]; } else { echo "50"; } ?>">
-<button type="submit" class="btn"><i class="icon-time"></i> Shabbat Times &raquo;</button>
+<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-time"></span> Shabbat Times &raquo;</button>
 </form>
 <?php if (isset($param["zip"]) || isset($param["city"])) { ?>
-<p><a class="btn" href="/shabbat/fridge.cgi?<?php
+<p><a class="btn btn-default" href="/shabbat/fridge.cgi?<?php
   echo isset($param["zip"]) ? "zip=$param[zip]" : "city=$param[city]" ?>&amp;year=<?php
-  echo $hebyear ?>"><i class="icon-print"></i> Print times for <?php echo $hebyear ?> &raquo;</a></p>
+  echo $hebyear ?>"><span class="glyphicon glyphicon-print"></span> Print times for <?php echo $hebyear ?> &raquo;</a></p>
 <?php } else { ?>
-<p><a class="btn" href="/home/shabbat/fridge"><i class="icon-print"></i> Print times for <?php echo $hebyear ?> &raquo;</a></p>
+<p><a class="btn btn-default" href="/home/shabbat/fridge"><span class="glyphicon glyphicon-print"></span> Print times for <?php echo $hebyear ?> &raquo;</a></p>
 <?php } ?>
-</div><!-- .span6 -->
+</div><!-- .col-md-6 -->
 
-<div class="span6">
-<h2><img style="vertical-align:middle" src="/i/glyphicons_pro_1.7/glyphicons/png/glyphicons_351_book_open.png" width="24" height="22" alt="">
-Torah Readings</h2>
+<div class="col-md-6">
+<h2><span class="glyphicons book_open"></span> Torah Readings</h2>
 <p>An aliyah-by-aliyah breakdown. Full kriyah and triennial system.</p>
-<p><a class="btn" href="/sedrot/"><i class="icon-book"></i> Torah Readings &raquo;</a></p>
-</div><!-- .span6 -->
-</div><!-- .row-fluid -->
+<p><a class="btn btn-default" href="/sedrot/"><span class="glyphicon glyphicon-book"></span> Torah Readings &raquo;</a></p>
+</div><!-- .col-md-6 -->
+</div><!-- .row -->
 
-</div><!-- .span12 -->
+</div><!-- .col-md-12 -->
 
 <?php
 echo html_footer_bootstrap();

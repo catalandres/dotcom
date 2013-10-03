@@ -221,7 +221,7 @@ href="http://en.wikipedia.org/wiki/Gregorian_calendar#Adoption_in_Europe">[1]</a
 }
 ?>
 <div id="converter-results">
-<ul class="unstyled">
+<ul class="list-unstyled">
 <li class="big-list"><?php echo "$first = <strong>$second</strong>"; ?></li>
 <li dir="rtl" lang="he" class="hebrew big-list jumbo"><?php echo $hebrew ?></li>
 <?php
@@ -273,7 +273,7 @@ EOD;
 
     echo html_header_bootstrap("Hebrew Date Converter - $hebdate", $xtra_head);
 ?>
-<div class="span9">
+<div class="col-md-9">
 <?php
 }
 
@@ -302,38 +302,48 @@ function form($head, $message, $help = "") {
 <div id="converter-form" class="well well-small">
 <form class="form-inline" action="<?php echo $action ?>">
 <div class="pseudo-legend">Hebrew Date Converter</div>
-<fieldset>
-<div class="controls controls-row">
-<input style="width:auto" type="text" name="gd" value="<?php echo $gd ?>" size="2" maxlength="2" id="gd" pattern="\d*">
+<div class="row">
+<div class="col-sm-2">
+<input class="form-control" type="text" name="gd" value="<?php echo $gd ?>" size="2" maxlength="2" id="gd" pattern="\d*">
+</div><!-- .col-sm-2 -->
+<div class="col-sm-4">
 <?php
 global $MoY_long;
-echo html_form_select("gm", $MoY_long, $gm, 1, "", false, 'class="input-medium"');
+echo html_form_select("gm", $MoY_long, $gm, 1, "", false, 'class="form-control"');
 ?>
-<input style="width:auto" type="text" name="gy" value="<?php echo $gy ?>" size="4" maxlength="4" id="gy" pattern="\d*">
-</div><!-- .controls-row -->
-<div class="controls">
-<label class="checkbox" for="gs"><input type="checkbox" name="gs" value="on" id="gs">
+</div><!-- .col-sm-4 -->
+<div class="col-sm-2">
+<input class="form-control" type="text" name="gy" value="<?php echo $gy ?>" size="4" maxlength="4" id="gy" pattern="\d*">
+</div><!-- .col-sm-2 -->
+</div><!-- .row -->
+<div class="row">
+<div class="col-sm-6">
+<div class="checkbox">
+<label><input type="checkbox" name="gs" value="on" id="gs">
 After sunset</label>
-</div><!-- .controls -->
-<div class="controls">
-<button name="g2h" type="submit" value="1" class="btn btn-primary"><i class="icon-refresh icon-white"></i> Gregorian to Hebrew</button>
-</div><!-- .controls -->
-</fieldset>
+</div>
+</div>
+</div><!-- .row -->
+<button name="g2h" type="submit" value="1" class="btn btn-primary"><i class="glyphicon glyphicon-refresh"></i> Gregorian to Hebrew</button>
 </form>
-
-<form class="form-inline" action="<?php echo $action ?>">
-<fieldset>
-<div class="controls controls-row">
-<input style="width:auto" type="text" name="hd" value="<?php echo $hd ?>" size="2" maxlength="2" id="hd" pattern="\d*">
+<div>&nbsp;</div>
+<form class="form-inline" role="form" action="<?php echo $action ?>">
+<div class="row">
+<div class="col-sm-2">
+<input class="form-control" type="text" name="hd" value="<?php echo $hd ?>" size="2" maxlength="2" id="hd" pattern="\d*">
+</div><!-- .col-sm-2 -->
+<div class="col-sm-4">
 <?php
-echo html_form_select("hm", $hmstr_to_hebcal, $hm, 1, "", false, 'class="input-medium"');
+echo html_form_select("hm", $hmstr_to_hebcal, $hm, 1, "", false, 'class="form-control"');
 ?>
-<input style="width:auto" type="text" name="hy" value="<?php echo $hy ?>" size="4" maxlength="4" id="hy" pattern="\d*">
-</div><!-- .controls-row -->
-<div class="controls">
-<button name="h2g" type="submit" value="1" class="btn btn-primary"><i class="icon-refresh icon-white"></i> Hebrew to Gregorian</button>
-</div><!-- .controls -->
-</fieldset></form></div><!-- #converter-form -->
+</div><!-- .col-sm-4 -->
+<div class="col-sm-2">
+<input class="form-control" type="text" name="hy" value="<?php echo $hy ?>" size="4" maxlength="4" id="hy" pattern="\d*">
+</div><!-- .col-sm-2 -->
+</div><!-- .row -->
+<button name="h2g" type="submit" value="1" class="btn btn-primary"><i class="glyphicon glyphicon-refresh"></i> Hebrew to Gregorian</button>
+</form>
+</div><!-- #converter-form -->
 <?php
 
     my_footer();
@@ -342,30 +352,30 @@ echo html_form_select("hm", $hmstr_to_hebcal, $hm, 1, "", false, 'class="input-m
 
 function my_footer() {
 ?>
-<div class="row-fluid">
-<div class="span6">
+<div class="row">
+<div class="col-md-6">
 <h5>Yahrzeit + Anniversary Calendar</h5>
 <p>Calculate anniversaries on the Hebrew calendar ten years into the
 future. Download/export to Outlook, iPhone, Google Calendar and more.</p>
-<p><a class="btn" href="/yahrzeit/"><i class="icon-user"></i> Yahrzeit + Anniversary Calendar &raquo;</a></p>
-</div><!-- .span6 -->
-<div class="span6">
+<p><a class="btn btn-default" href="/yahrzeit/"><i class="glyphicon glyphicon-user"></i> Yahrzeit + Anniversary Calendar &raquo;</a></p>
+</div><!-- .col-md-6 -->
+<div class="col-md-6">
 <h5>Hebrew Date Feeds</h5>
 <p>Today's Hebrew date for your RSS reader.</p>
-<p><a class="btn" href="/etc/hdate-en.xml"
+<p><a class="btn btn-default" href="/etc/hdate-en.xml"
 title="Today's Hebrew Date in English Transliteration RSS"><img
 src="/i/feed-icon-14x14.png" style="border:none" width="14" height="14"
 alt="Today's Hebrew Date in English Transliteration RSS">
 English transliteration feed &raquo;</a></p>
-<p><a class="btn" href="/etc/hdate-he.xml"
+<p><a class="btn btn-default" href="/etc/hdate-he.xml"
 title="Today's Hebrew Date in Hebrew RSS"><img
 src="/i/feed-icon-14x14.png" style="border:none" width="14" height="14"
 alt="Today's Hebrew Date in Hebrew RSS">
 Hebrew feed &raquo;</a></p>
-</div><!-- .span6 -->
-</div><!-- .row-fluid -->
-</div><!-- .span9 -->
-<div class="span3" role="complementary">
+</div><!-- .col-md-6 -->
+</div><!-- .row -->
+</div><!-- .col-md-9 -->
+<div class="col-md-3" role="complementary">
 <h5>Advertisement</h5>
 <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- 200x200 text only -->
@@ -376,7 +386,7 @@ Hebrew feed &raquo;</a></p>
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-</div><!-- .span3 -->
+</div><!-- .col-md-3 -->
 <?php
 
     echo html_footer_bootstrap();

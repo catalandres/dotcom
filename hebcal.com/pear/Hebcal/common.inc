@@ -447,7 +447,7 @@ function html_menu_item_bootstrap($path, $title, $tooltip, $selected) {
 
 function html_menu_bootstrap($selected) {
     global $HTML_MENU_ITEMS_V2;
-    $str = "<ul class=\"nav\">";
+    $str = "<ul class=\"nav navbar-nav\">";
     foreach ($HTML_MENU_ITEMS_V2 as $item) {
 	$path = $item[0];
 	$title = $item[1];
@@ -482,9 +482,9 @@ function html_header_bootstrap($title, $xtra_head="", $title_append_suffix=true)
     $menu = html_menu_bootstrap($self);
 
     if ($self == "/") {
-	$logo = '<span class="brand" id="logo" title="Hebcal Jewish Calendar">Hebcal</span>';
+	$logo = '<span class="navbar-brand" id="logo" title="Hebcal Jewish Calendar">Hebcal</span>';
     } else {
-	$logo = '<a class="brand" id="logo" title="Hebcal Jewish Calendar" href="/">Hebcal</a>';
+	$logo = '<a class="navbar-brand" id="logo" title="Hebcal Jewish Calendar" href="/">Hebcal</a>';
     }
 
 
@@ -494,8 +494,8 @@ function html_header_bootstrap($title, $xtra_head="", $title_append_suffix=true)
 <meta charset="UTF-8">
 <title>$title</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" id="bootstrap-css" href="/i/bootstrap-2.3.1/css/bootstrap.min.css" media="all">
-<link rel="stylesheet" type="text/css" id="bootstrap-responsive-css" href="/i/bootstrap-2.3.1/css/bootstrap-responsive.min.css" media="all">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="/i/hebcal-3.0.0.css">
 <script type="text/javascript">
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-967247-1']);
@@ -506,44 +506,31 @@ ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www')
 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 })();
 </script>
-<style type="text/css">
-.navbar{position:static}
-body{padding-top:0}
-.label{text-transform:none}
-:lang(he) {
-  font-family:'SBL Hebrew',David,Narkisim,'Times New Roman','Ezra SIL SR',FrankRuehl,'Microsoft Sans Serif','Lucida Grande';
-  font-size:125%;
-  direction:rtl;
-}
-@media print{
- a[href]:after{content:""}
- .sidebar-nav{display:none}
-}
-</style>
 $xtra_head</head>
 <body>
 
-<div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container-fluid nav-container">
-     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-     </a>
+<div class="navbar navbar-default navbar-static-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
      $logo
-     <div class="nav-collapse collapse">
+    </div>
+    <div class="navbar-collapse collapse">
      $menu
-     <form class="navbar-search pull-right" role="search" method="get" id="searchform" action="/home/">
-     <input name="s" id="s" type="text" class="search-query" placeholder="Search">
+     <form class="navbar-form navbar-search navbar-right" role="search" method="get" id="searchform" action="/home/">
+     <input name="s" type="text" class="form-control" placeholder="Search">
      </form>
-     </div><!-- .nav-collapse -->
-    </div><!-- .container -->
-   </div><!-- .navbar-inner -->
+    </div><!-- .navbar-collapse -->
+   </div><!-- .container -->
 </div><!-- .navbar -->
 
 <div class="container">
-<div id="content" class="clearfix row-fluid">
+<div id="content" class="clearfix row">
 EOD;
     return $html;
 }
@@ -564,45 +551,47 @@ function html_footer_bootstrap($last_updated = true) {
 <footer role="contentinfo">
 <hr>
 <div id="inner-footer" class="clearfix">
-<div class="row-fluid">
-<div class="span3">
-<ul class="nav nav-list">
+<div class="row">
+<div class="bs-sidebar hidden-print" role="complementary">
+<div class="col-md-3">
+<ul class="nav bs-sidenav">
 <li class="nav-header">Products</li>
 <li><a href="/holidays/">Jewish Holidays</a></li>
 <li><a href="/converter/">Hebrew Date Converter</a></li>
 <li><a href="/shabbat/">Shabbat Times</a></li>
 <li><a href="/sedrot/">Torah Readings</a></li>
 </ul>
-</div><!-- .span3 -->
-<div class="span3">
-<ul class="nav nav-list">
+</div><!-- .col-md-3 -->
+<div class="col-md-3">
+<ul class="nav bs-sidenav">
 <li class="nav-header">About Us</li>
 <li><a href="/home/about">About Hebcal</a></li>
 <li><a href="/home/category/news">News</a></li>
 <li><a href="/home/about/privacy-policy">Privacy Policy</a></li>
 </ul>
-</div><!-- .span3 -->
-<div class="span3">
-<ul class="nav nav-list">
+</div><!-- .col-md-3 -->
+<div class="col-md-3">
+<ul class="nav bs-sidenav">
 <li class="nav-header">Connect</li>
 <li><a href="/home/help">Help</a></li>
 <li><a href="/home/about/contact">Contact Us</a></li>
 <li><a href="/home/about/donate">Donate</a></li>
 <li><a href="/home/developer-apis">Developer APIs</a></li>
 </ul>
-</div><!-- .span3 -->
-<div class="span3">
+</div><!-- .col-md-3 -->
+</div><!-- .bs-sidebar -->
+<div class="col-md-3">
 $last_updated_text
 <p><small>Except where otherwise noted, content on this site is licensed under a <a
 rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US">Creative Commons Attribution 3.0 License</a>.</small></p>
-</div><!-- .span3 -->
-</div><!-- .row-fluid -->
+</div><!-- .col-md-3 -->
+</div><!-- .row -->
 </div><!-- #inner-footer -->
 </footer>
 </div> <!-- .container -->
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="/i/bootstrap-2.3.1/js/bootstrap.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
 (function(){if(document.getElementsByTagName){var b=document.getElementsByTagName("a");if(b&&b.length){for(var a=0;a<b.length;a++){if(b[a]&&b[a].className=="amzn"){if(b[a].id){b[a].onclick=function(){_gaq.push(["_trackEvent","outbound-amzn",this.id])}}}
