@@ -789,7 +789,7 @@ EOHTML
 		    -labels =>
 		    {"G" => " Gregorian (common era) ",
 		     "H" => " Hebrew Year"}),
-    qq{\n<p><small class="muted">Use all digits to specify a year.\n},
+    qq{\n<p><small class="text-muted">Use all digits to specify a year.\n},
     qq{You probably aren't interested in 08, but rather 2008.</small></p>\n},
     $q->hidden(-name => "v",-value => 1,-override => 1),
     qq{</fieldset>\n}
@@ -813,12 +813,12 @@ EOHTML
     $q->checkbox(-name => "mf",
 		 -checked => 1,
 		 -label => "Minor Fasts"),
-    qq{\n<small class="muted">(Ta'anit Esther, Tzom Gedaliah, etc.)</small></label>\n},
+    qq{\n<small class="text-muted">(Ta'anit Esther, Tzom Gedaliah, etc.)</small></label>\n},
     qq{<label class="checkbox">},
     $q->checkbox(-name => "ss",
 		 -checked => 1,
 		 -label => "Special Shabbatot"),
-    qq{\n<small class="muted">(Shabbat Shekalim, Zachor, etc.)</small></label>\n},
+    qq{\n<small class="text-muted">(Shabbat Shekalim, Zachor, etc.)</small></label>\n},
     qq{<label class="checkbox">},
     $q->checkbox(-name => "o",
 		 -label => "Days of the Omer"),
@@ -980,7 +980,7 @@ EOHTML
 	qq{&nbsp;<a href="#" id="havdalahInfo" data-toggle="tooltip" data-placement="bottom" },
 	qq{title="Use 42 min for three medium-sized stars, },
 	qq{50 min for three small stars, },
-	qq{72 min for Rabbeinu Tam, or 0 to suppress Havdalah times"><i class="icon icon-info-sign"></i></a>},
+	qq{72 min for Rabbeinu Tam, or 0 to suppress Havdalah times"><i class="glyphicon glyphicon-info-sign"></i></a>},
 	"</label>\n",
 	);
 
@@ -1227,14 +1227,14 @@ accurate.
 	Hebcal::out_html(undef, HebcalHtml::download_html_modal_button());
 
 	# don't offer "Print PDF" button on Hebrew-only language setting
-	my $print_pdf_btn_class = "btn download";
+	my $print_pdf_btn_class = "btn btn-default download";
 	my $lang = $q->param("lg");
 	if ($lang && $lang eq "h") {
 	    $print_pdf_btn_class .= " disabled";
 	}
 
 	my $pdf_url = Hebcal::download_href($q, $filename, "pdf");
-	Hebcal::out_html(undef, qq{<a class="$print_pdf_btn_class" id="pdf" href="$pdf_url"><i class="icon-print"></i> Print PDF</a>\n});
+	Hebcal::out_html(undef, qq{<a class="$print_pdf_btn_class" id="pdf" href="$pdf_url"><i class="glyphicon glyphicon-print"></i> Print PDF</a>\n});
 
 	if (param_true("c") && $q->param("geo") && $q->param("geo") =~ /^city|zip$/) {
 	    # Fridge
@@ -1248,13 +1248,13 @@ accurate.
 	    my $hyear = Hebcal::get_default_hebrew_year($this_year,$this_mon,$this_day);
 	    $url .= "&amp;year=$hyear";
 	    
-	    Hebcal::out_html(undef, qq{<a class="btn" href="$url"><i class="icon-print"></i> Candle-lighting times</a>\n});
+	    Hebcal::out_html(undef, qq{<a class="btn btn-default" href="$url"><i class="glyphicon glyphicon-print"></i> Candle-lighting times</a>\n});
 	}
     }
 
-    Hebcal::out_html(undef, qq{<a class="btn" href="},
+    Hebcal::out_html(undef, qq{<a class="btn btn-default" href="},
 		     Hebcal::self_url($q, {"v" => "0"}, "&amp;"),
-		     qq{" title="Change calendar options"><i class="icon-cog"></i> Settings</a>\n});
+		     qq{" title="Change calendar options"><i class="glyphicon glyphicon-cog"></i> Settings</a>\n});
 
     Hebcal::out_html(undef, qq{</div><!-- .btn-toolbar -->\n});
 
@@ -1281,8 +1281,8 @@ EOHTML
 	$email_form .= <<EOHTML;
 <p><small>Subscribe to weekly Shabbat candle lighting times and Torah portion by email.</small></p>
 <div class="input-append input-prepend">
-<span class="add-on"><i class="icon-envelope"></i></span><input type="email" name="em" placeholder="Email address">
-<button type="submit" class="btn" name="modify" value="1"> Sign up</button>
+<span class="add-on"><i class="glyphicon glyphicon-envelope"></i></span><input type="email" name="em" placeholder="Email address">
+<button type="submit" class="btn btn-default" name="modify" value="1"> Sign up</button>
 </div>
 </fieldset>
 </form>
@@ -1355,8 +1355,8 @@ EOHTML
     }
 
     my $nav_pagination = <<EOHTML;
-<div class="pagination pagination-centered">
-<ul>
+<div class="text-center">
+<ul class="pagination">
 <li><a href="$prev_url" rel="prev">&laquo; $prev_title</a></li>
 EOHTML
     ;
@@ -1432,7 +1432,7 @@ EOHTML
 		   ($events[$i]->[$Hebcal::EVT_IDX_SUBJ] =~
 		    /^\d+\w+ day of the Omer$/))
 	    {
-		$class .= " muted";
+		$class .= " text-muted";
 	    }
 
 	    $cal->addcontent($mday, qq{<span class="$class">$cal_subj</span>});

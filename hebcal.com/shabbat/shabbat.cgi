@@ -464,7 +464,7 @@ sub more_from_hebcal {
     $url .= '&vis=on&month=now&year=now&nh=on&nx=on&s=on&c=on&mf=on&ss=on';
 
     my $month_name = join(" ", $Hebcal::MoY_short[$this_mon-1], $this_year);
-    Hebcal::out_html($cfg, qq{<a class="btn" href="},
+    Hebcal::out_html($cfg, qq{<a class="btn btn-default" href="},
 		     url_html($url),
 		     qq{"><i class="icon-calendar"></i> $month_name calendar &raquo;</a>\n});
 
@@ -476,14 +476,14 @@ sub more_from_hebcal {
 	$url .= "city=" . URI::Escape::uri_escape_utf8($q->param('city'));
     }
     $url .= "&year=" . $hyear;
-    Hebcal::out_html($cfg, qq{<a class="btn" title="Print and post on your refrigerator"\n},
+    Hebcal::out_html($cfg, qq{<a class="btn btn-default" title="Print and post on your refrigerator"\n},
 		     qq{href="}, url_html($url),
 		     qq{"><i class="icon-print"></i> Print candle-lighting times &raquo;</a>\n});
 
     # RSS
     my $rss_href = url_html(self_url() . "&cfg=r");
     my $rss_html = <<EOHTML;
-<a class="btn" title="RSS feed of candle lighting times"
+<a class="btn btn-default" title="RSS feed of candle lighting times"
 href="$rss_href"><img
 src="/i/feed-icon-14x14.png" style="border:none" width="14" height="14"
 alt="RSS feed of candle lighting times"> RSS feed &raquo;</a>
@@ -503,7 +503,7 @@ EOHTML
 	if (defined $q->param('m') && $q->param('m') =~ /^\d+$/);
     $url .= "&type=shabbat";
 
-    Hebcal::out_html($cfg, qq{<a class="btn" title="Candle lighting and Torah portion for your synagogue site"\n},
+    Hebcal::out_html($cfg, qq{<a class="btn btn-default" title="Candle lighting and Torah portion for your synagogue site"\n},
 		     qq{href="}, url_html($url), qq{"><i class="icon-wrench"></i> Developer API &raquo;</a>\n});
 
     Hebcal::out_html($cfg, qq{</div><!-- .btn-toolbar -->\n});
@@ -531,7 +531,7 @@ EOHTML
 <p><small>Subscribe to weekly Shabbat candle lighting times and Torah portion by email.</small></p>
 <div class="input-append input-prepend">
 <span class="add-on"><i class="icon-envelope"></i></span><input type="email" name="em" placeholder="Email address">
-<button type="submit" class="btn" name="modify" value="1"> Sign up</button>
+<button type="submit" class="btn btn-default" name="modify" value="1"> Sign up</button>
 </div>
 </fieldset>
 </form>

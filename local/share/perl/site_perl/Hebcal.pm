@@ -1224,41 +1224,43 @@ sub html_footer_bootstrap
 <footer role="contentinfo">
 <hr>
 <div id="inner-footer" class="clearfix">
-<div class="row-fluid">
-<div class="span3">
-<ul class="nav nav-list">
+<div class="row">
+<div class="bs-sidebar hidden-print" role="complementary">
+<div class="col-md-3">
+<ul class="nav nav-list bs-sidenav">
 <li class="nav-header">Products</li>
 <li><a href="/holidays/">Jewish Holidays</a></li>
 <li><a href="/converter/">Hebrew Date Converter</a></li>
 <li><a href="/shabbat/">Shabbat Times</a></li>
 <li><a href="/sedrot/">Torah Readings</a></li>
 </ul>
-</div><!-- .span3 -->
-<div class="span3">
-<ul class="nav nav-list">
+</div><!-- .col-md-3 -->
+<div class="col-md-3">
+<ul class="nav nav-list bs-sidenav">
 <li class="nav-header">About Us</li>
 <li><a href="/home/about">About Hebcal</a></li>
 <li><a href="/home/category/news">News</a></li>
 <li><a href="/home/about/privacy-policy">Privacy Policy</a></li>
 </ul>
-</div><!-- .span3 -->
-<div class="span3">
-<ul class="nav nav-list">
+</div><!-- .col-md-3 -->
+<div class="col-md-3">
+<ul class="nav nav-list bs-sidenav">
 <li class="nav-header">Connect</li>
 <li><a href="/home/help">Help</a></li>
 <li><a href="/home/about/contact">Contact Us</a></li>
 <li><a href="/home/about/donate">Donate</a></li>
 <li><a href="/home/developer-apis">Developer APIs</a></li>
 </ul>
-</div><!-- .span3 -->
-<div class="span3">
+</div><!-- .col-md-3 -->
+</div><!-- .bs-sidebar -->
+<div class="col-md-3">
 $last_updated_text
 <p><small>Except where otherwise noted, content on
 this site is licensed under a
 <a rel="license" href="http://creativecommons.org/licenses/by/3.0/deed.en_US">Creative
 Commons Attribution 3.0 License</a>.</small></p>
-</div><!-- .span3 -->
-</div><!-- .row-fluid -->
+</div><!-- .col-md-3 -->
+</div><!-- .row -->
 </div><!-- #inner-footer -->
 </footer>
 </div> <!-- .container -->
@@ -1400,8 +1402,8 @@ sub html_header_bootstrap {
 <meta charset="UTF-8">
 <title>$title2</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" id="bootstrap-css" href="/i/bootstrap-2.3.1/css/bootstrap.min.css" media="all">
-<link rel="stylesheet" type="text/css" id="bootstrap-responsive-css" href="/i/bootstrap-2.3.1/css/bootstrap-responsive.min.css" media="all">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="/i/hebcal-3.0.0.css">
 <script type="text/javascript">
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-967247-1']);
@@ -1412,44 +1414,31 @@ ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www')
 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 })();
 </script>
-<style type="text/css">
-.navbar{position:static}
-body{padding-top:0}
-:lang(he) {
-  font-family:'SBL Hebrew',David,Narkisim,'Times New Roman','Ezra SIL SR',FrankRuehl,'Microsoft Sans Serif','Lucida Grande';
-  font-size:125%;
-  font-weight:normal;
-  direction:rtl;
-}
-\@media print{
- a[href]:after{content:""}
- .sidebar-nav{display:none}
-}
-</style>
 $xtra_head</head>
 <body>
 
-<div class="navbar navbar-fixed-top">
- <div class="navbar-inner">
-   <div class="container-fluid nav-container">
-   <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-   <span class="icon-bar"></span>
-   <span class="icon-bar"></span>
-   <span class="icon-bar"></span>
-   </a>
-   <a class="brand" id="logo" title="Hebcal Jewish Calendar" href="/">Hebcal</a>
-   <div class="nav-collapse collapse">
-    $menu
-    <form class="navbar-search pull-right" role="search" method="get" id="searchform" action="/home/">
-    <input name="s" id="s" type="text" class="search-query" placeholder="Search">
-    </form>
-   </div><!-- .nav-collapse -->
+<div class="navbar navbar-default navbar-static-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+     <a class="navbar-brand" id="logo" title="Hebcal Jewish Calendar" href="/">Hebcal</a>
+    </div>
+    <div class="navbar-collapse collapse">
+     $menu
+     <form class="navbar-form navbar-search navbar-right" role="search" method="get" id="searchform" action="/home/">
+     <input name="s" type="text" class="form-control" placeholder="Search">
+     </form>
+    </div><!-- .navbar-collapse -->
    </div><!-- .container -->
- </div><!-- .navbar-inner -->
 </div><!-- .navbar -->
 
 <div class="container">
-<div id="content" class="clearfix row-fluid">
+<div id="content" class="clearfix row">
 EOHTML
 ;
     return $str;
